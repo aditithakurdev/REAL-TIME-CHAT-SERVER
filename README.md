@@ -25,6 +25,7 @@ Database: MongoDB
 
 
 *PROJECT STRUCTURE*
+
 realtime-chat/
 │── src/
 │   ├── config/

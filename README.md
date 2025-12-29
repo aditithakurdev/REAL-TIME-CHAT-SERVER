@@ -1,4 +1,5 @@
 # REAL-TIME-CHAT-SERVER
+
 *COMPANY*: CODETECH IT SOLUTIONS
 
 *NAME*: ADITI
@@ -23,7 +24,6 @@ HTTP Server: Express.js
 
 Database: MongoDB
 
-
 *PROJECT STRUCTURE*
 
 realtime-chat/
@@ -38,3 +38,12 @@ realtime-chat/
 │── index.js
 │── package.json
 │── .env
+
+
+*Features*
+
+      -Real-Time Messaging: Users can send and receive messages instantly.
+      -Multiple Chat Rooms: Users can join and chat in different rooms.
+      -User Connection Management: Notifies when users join or leave rooms.
+      -Scalable Architecture: Built with Node.js and Socket.IO for handling multiple users.
+      -Extensible: Can be extended with private messaging, chat history, and notifications.

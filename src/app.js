@@ -1,6 +1,8 @@
 const express = require('express');
-
+const chatRoutes = require('./routes/chat.routes');
 const app = express();
+require("dotenv").config();
+
 
 app.use(express.json());
 

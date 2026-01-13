@@ -1,38 +1,29 @@
-const socketHandler = (io) => {
+module.exports = (io) => {
   io.on('connection', (socket) => {
     console.log('User connected:', socket.id);
 
-    // Join chat room
-    socket.on('joinRoom', ({ username, room }) => {
-      socket.join(room);
-      socket.username = username;
-      socket.room = room;
+    socket.on('joinroomName', (roomName) => {
+      if (!roomName) return;
 
-      socket.to(room).emit('message', {
-        user: 'System',
-        text: `${username} joined the room`
-      });
+      if (socket.roomName === roomName) return;
+
+      socket.roomName = roomName;
+      socket.join(roomName);
+
+      socket.to(roomName).emit('message', ' A user joined the roomName');
     });
 
-    // Receive chat message
-    socket.on('chatMessage', (message) => {
-      io.to(socket.room).emit('message', {
-        user: socket.username,
-        text: message
-      });
+    socket.on('chatMessage', ({ roomName, message }) => {
+      if (!roomName || !message || message.trim() === '') return;
+
+      io.to(roomName).emit('message', message);
     });
 
-    // Leave room
     socket.on('disconnect', () => {
-      if (socket.room) {
-        socket.to(socket.room).emit('message', {
-          user: 'System',
-          text: `${socket.username} left the room`
-        });
+      if (socket.roomName) {
+        socket.to(socket.roomName).emit('message', 'A user left the roomName');
       }
       console.log('User disconnected:', socket.id);
     });
   });
 };
-
-module.exports = socketHandler;
